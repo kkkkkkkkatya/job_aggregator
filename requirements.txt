@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+requests
+playwright
+celery
+redis
+tortoise-orm[asyncpg]
+aerich
+python-dotenv
