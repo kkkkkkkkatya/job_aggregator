@@ -5,21 +5,23 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+JOOBLE_API_KEY = os.getenv("JOOBLE_API_KEY")
+
 POSTGRES_USER = os.getenv("POSTGRES_USER", "postgres")
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "password")
 POSTGRES_DB = os.getenv("POSTGRES_DB", "job_aggregator")
 POSTGRES_HOST = os.getenv("POSTGRES_HOST", "localhost")
 POSTGRES_PORT = os.getenv("POSTGRES_PORT", "5432")
 
-POSTGRES_CONNECTION_URL = f"postgres://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
+DB_CONNECTION_URL = f"postgres://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 
 TORTOISE_CONFIG = {
-    "connections": {"default": POSTGRES_CONNECTION_URL},
+    "connections": {"default": DB_CONNECTION_URL},
     "apps": {
         "models": {
             "models": [
                 "aerich.models",
-                "app.models",
+                "app.infrastructure.database.models.raw_data",
             ],
             "default_connection": "default",
         }

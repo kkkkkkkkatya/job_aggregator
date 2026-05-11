@@ -28,7 +28,7 @@ services:
 
   migrate:
     build: .
-    command: sh -c "aerich fix-migrations; aerich upgrade || aerich init-db"
+    command: sh -c "aerich upgrade || aerich init-db"
     env_file: .env
     environment:
       POSTGRES_HOST: postgres
